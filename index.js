@@ -19,30 +19,46 @@ Investigate the data above. Practice accessing data by console.log-ing the follo
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Create a function called  getFinals that takes `data` as an argument and returns an array of objects with only finals data */
 
-function getFinals(/* code here */) {
-   /* code here */
+function getFinals(data) {
+    let newArr = []
+   data.map(item => {
+       if(item["Stage"] === "Final") {
+          newArr.push(item);
+       }
+   })
+   return newArr;
 }
+
+getFinals(fifaData)
 
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Implement a higher-order function called `getYears` that accepts the callback function `getFinals`, and returns an array called `years` containing all of the years in the dataset */
 
-function getYears(/* code here */) {
-    /* code here */
+function getYears(cb) {
+    let year = [];
+    cb.map(yr => {
+        year.push(yr.Year)
+    });
+    return year;
 }
-
-
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Implement a higher-order function called `getWinners`, that accepts the callback function `getFinals()` and determine the winner (home or away) of each `finals` game. Return the name of all winning countries in an array called `winners` */ 
 
-function getWinners(/* code here */) {
-    /* code here */
+function getWinners(cb) {
+    let winners = [];
+    cb.map(item => {
+        if(item["Home Team Goals"] > item["Away Team Goals"]) {
+            winners.push(item["Home Team Name"])
+        }else if(item["Away Team Goals"] > item["Home Team Goals"]){
+            winners.push(item["Away Team Name"])
+        }
+    })
+    return winners;
 }
-
-
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -53,8 +69,16 @@ Parameters:
  * callback function getYears
  */
 
-function getWinnersByYear(/* code here */) {
-    /* code here */
+function getWinnersByYear(cb, callback) {
+    let arr = []
+    for(let i = 0; i < cb.length; i++) {
+        callback.map(item => {
+            arr.push( `In ${cb[i]}, ${item} won the world cup!`)
+        })
+
+    }
+    return arr;
+    
 }
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
