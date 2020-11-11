@@ -69,25 +69,26 @@ Parameters:
  * callback function getYears
  */
 
-function getWinnersByYear(cb, callback) {
-    let arr = []
-    for(let i = 0; i < cb.length; i++) {
-        callback.map(item => {
-            arr.push( `In ${cb[i]}, ${item} won the world cup!`)
-        })
-
-    }
-    return arr;
-    
+function getWinnersByYear(cb) {
+    const winners = cb.map(function(item){
+        return `In ${item.Year}, ${item["Home Team Name"]} won the world cup!`
+    });
+    return winners;
 }
+
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Write a function called `getAverageGoals` that accepts a parameter `data` and returns the the average number of home team goals and away team goals scored per match (Hint: use .reduce and do this in 2 steps) */
 
-function getAverageGoals(/* code here */) {
-   /* code here */
+function getAverageGoals(data) {
+    const avg = data.reduce((cummulative, current) => {
+        return cummulative + current["Home Team Goals"] + current["Away Team Goals"]
+    },0);
+    function num() {
+        return avg / data.length
+    }
+    return num().toFixed(2)
 }
-
 
 
 
